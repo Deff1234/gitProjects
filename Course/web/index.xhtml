@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -8,13 +8,20 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head></h:head>
 <h:body>
-    <p:accordionPanel>
-        <p:tab title="First Tab Title">
-            <h:outputText value="Lorem"/>
-        </p:tab>
-        <p:tab title="Second Tab Title">
-            <h:outputText value="Ipsum"/>
-        </p:tab>
-    </p:accordionPanel>
+    <h:outputStylesheet library="css" name="styles.css"/>
+        <h:form >
+            <p:panel id="panelId1" header="Вход в систему" styleClass="panelId1">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="Логин: "/>
+                    <p:password id="loginId" value="#{loginPageBean.login}"/>
+
+                    <h:outputText value="Пароль: "/>
+                    <p:password id="passwordId" value="#{loginPageBean.password}"/>
+
+                    <p:commandButton value="Вход" id="signInButtonId"
+                                     action="#{loginPageBean.checkSuccessLogin}"/>
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
 </h:body>
 </html>

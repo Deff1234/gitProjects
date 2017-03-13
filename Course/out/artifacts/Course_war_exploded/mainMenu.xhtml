@@ -6,8 +6,21 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-<head></head>
+<h:head></h:head>
 <h:body>
-    <h:outputText value="Welcome"/>
+    <h:form>
+        <p:growl autoUpdate="true"/>
+        <p:panelMenu style="width: 300px">
+            <p:submenu label="Клиенты" expanded="true">
+                <p:menuitem value="clients" icon="ui-icon-person" url="#"/>
+            </p:submenu>
+            <p:submenu label="Автомобили" expanded="true">
+                <p:menuitem value="auto" icon="ui-icon-gear" url="#"/>
+            </p:submenu>
+            <p:submenu label="Технические данные" expanded="true">
+                <p:menuitem value="technicalDate" icon="ui-icon-wrench" url="#"/>
+            </p:submenu>
+        </p:panelMenu>
+    </h:form>
 </h:body>
 </html>

@@ -10,6 +10,7 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="vader-1.0.10" />
           <element id="library" level="project" name="Primefaces" />
+          <element id="file-copy" path="$PROJECT_DIR$/../mysql-connector-java-5.1.21.jar" />
         </element>
       </element>
     </root>

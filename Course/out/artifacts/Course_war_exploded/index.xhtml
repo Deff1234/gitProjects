@@ -9,19 +9,21 @@
 <h:head></h:head>
 <h:body>
     <h:outputStylesheet library="css" name="styles.css"/>
-        <h:form >
-            <p:panel id="panelId1" header="Вход в систему" styleClass="panelId1">
-                <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputText value="Логин: "/>
-                    <p:password id="loginId" value="#{loginPageBean.login}"/>
+    <h:form>
+        <p:panel id="panelId1" header="Вход в систему" styleClass="panelId1">
+            <h:messages id="messageSignIn"/>
+            <h:panelGrid columns="3" cellpadding="5">
+                <h:outputText for="loginId" value="Логин: "/>
+                <p:password id="loginId" value="#{loginPageBean.login}"/>
+                <h:message for="loginId" display="icon"/>
 
-                    <h:outputText value="Пароль: "/>
-                    <p:password id="passwordId" value="#{loginPageBean.password}"/>
-
-                    <p:commandButton value="Вход" id="signInButtonId"
-                                     action="#{loginPageBean.checkSuccessLogin}"/>
-                </h:panelGrid>
-            </p:panel>
-        </h:form>
+                <h:outputText for="passwordId" value="Пароль: "/>
+                <p:password id="passwordId" value="#{loginPageBean.password}"/>
+                <h:message for="passwordId" display="icon"/>
+            </h:panelGrid>
+            <p:commandButton value="Вход" id="signInButtonId" style="left: 235px" update="panelId1"
+                             action="#{loginPageBean.checkSuccessLogin}"/>
+        </p:panel>
+    </h:form>
 </h:body>
 </html>

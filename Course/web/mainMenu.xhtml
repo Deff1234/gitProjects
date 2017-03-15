@@ -8,19 +8,21 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head></h:head>
 <h:body>
-    <h:form>
-        <p:growl autoUpdate="true"/>
-        <p:panelMenu style="width: 300px">
-            <p:submenu label="Клиенты" expanded="true">
-                <p:menuitem value="clients" icon="ui-icon-person" url="#"/>
-            </p:submenu>
-            <p:submenu label="Автомобили" expanded="true">
-                <p:menuitem value="auto" icon="ui-icon-gear" url="#"/>
-            </p:submenu>
-            <p:submenu label="Технические данные" expanded="true">
-                <p:menuitem value="technicalDate" icon="ui-icon-wrench" url="#"/>
-            </p:submenu>
-        </p:panelMenu>
-    </h:form>
+    <h:outputStylesheet library="css" name="styles.css"/>
+    <p:tabMenu activeIndex="#{param.i}">
+        <p:menuitem value="Главное меню" url="mainMenu.xhtml?i=0" >
+            <f:param name="i" value="0" />
+        </p:menuitem>
+        <p:menuitem value="Клиенты" url="clients.xhtml?i=1">
+            <f:param name="i" value="1" />
+        </p:menuitem>
+        <p:menuitem value="Автомобили" url="cars.xhtml?i=2">
+            <f:param name="i" value="2" />
+        </p:menuitem>
+        <p:menuitem value="Технические данные" url="technicalData.xhtml?i=3">
+            <f:param name="i" value="3" />
+        </p:menuitem>
+    </p:tabMenu>
+    <h3>Меню</h3>
 </h:body>
 </html>

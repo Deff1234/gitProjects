@@ -2,3 +2,7 @@
     margin: 300px auto;
     width: 365px;
 }
+
+.ui-datatable .ui-column-filter {
+    word-break-inside: 150px;
+}

@@ -9,20 +9,20 @@
 <h:head></h:head>
 <h:body>
     <h:outputStylesheet library="css" name="styles.css"/>
-    <h:form>
+    <h:form id="formId1">
+        <p:growl id="growlId1" showDetail="true" sticky="true"/>
         <p:panel id="panelId1" header="Вход в систему" styleClass="panelId1">
-            <h:messages id="messageSignIn"/>
-            <h:panelGrid columns="3" cellpadding="5">
+        <p:focus context="panelId1"/>
+            <h:panelGrid columns="2" cellpadding="5">
                 <h:outputText for="loginId" value="Логин: "/>
-                <p:password id="loginId" value="#{loginPageBean.login}"/>
-                <h:message for="loginId" display="icon"/>
+                <p:inputText id="loginId" value="#{loginPageBean.login}"/>
 
                 <h:outputText for="passwordId" value="Пароль: "/>
-                <p:password id="passwordId" value="#{loginPageBean.password}"/>
-                <h:message for="passwordId" display="icon"/>
+                <p:inputText id="passwordId" value="#{loginPageBean.password}"/>
             </h:panelGrid>
-            <p:commandButton value="Вход" id="signInButtonId" style="left: 235px" update="panelId1"
-                             action="#{loginPageBean.checkSuccessLogin}"/>
+
+            <p:commandButton value="Вход" id="signInButtonId" style="left: 220px" update="growlId1"
+                             action="#{loginPageBean.checkSuccessLogin}" icon="fa fa-check"/>
         </p:panel>
     </h:form>
 </h:body>

@@ -2,7 +2,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.naming.NamingException;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
 @ManagedBean
 @RequestScoped
@@ -15,7 +15,19 @@ public class Client {
     private int delivery;
     private String typeOfPayment;
 
-    public ArrayList<Client> getMessages() throws SQLException, NamingException {
+    public Client(int clientId, String FIO, String passData, String homeAddress, String phone, int delivery, String typeOfPayment) {
+        this.clientId = clientId;
+        this.FIO = FIO;
+        this.passData = passData;
+        this.homeAddress = homeAddress;
+        this.phone = phone;
+        this.delivery = delivery;
+        this.typeOfPayment = typeOfPayment;
+    }
+
+    public Client(){}
+
+    public List<Client> getMessages() throws SQLException, NamingException {
         return ClientsBean.getClients();
     }
 

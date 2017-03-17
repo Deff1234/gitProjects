@@ -6,7 +6,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-<h:head></h:head>
+<h:head>
+</h:head>
 <h:body>
     <h:outputStylesheet library="css" name="styles.css"/>
     <p:tabMenu activeIndex="#{param.i}">
@@ -30,49 +31,100 @@
             <f:facet name="header">
                 Клиенты
             </f:facet>
-            <p:column filterBy="#{c.clientId}" filterStyle="width: inherit" sortBy="#{c.clientId}">
-                <f:facet name="header">
-                    <h:outputText value="Код клиента"/>
-                </f:facet>
+            <p:column style="width: 20px">
+                <h:commandLink
+                        actionListener="#{clientsBean.editClient}">
+                    <f:param name="clientId" value="#{c.clientId}"/>
+                    <p:graphicImage id="editGI"
+                                    value="resources/images/edit.png"
+                                    width="20"
+                                    height="20">
+                    </p:graphicImage>
+                </h:commandLink>
+            </p:column>
+            <p:column style="width: 20px">
+                <p:commandLink actionListener="#{clientsBean.deleteClientConfirm}" update="form1">
+                    <f:param name="clientId" value="#{c.clientId}"/>
+                    <p:confirm header="Подтверждение!" message="Вы уверены что хотите удалить клиента?" icon="ui-icon-alert"/>
+                    <p:graphicImage id="deleteGI"
+                                    value="resources/images/delete.png"
+                                    width="20"
+                                    height="20">
+                    </p:graphicImage>
+                </p:commandLink>
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                    <p:commandButton value="Да" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                    <p:commandButton value="Нет" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                </p:confirmDialog>
+            </p:column>
+            <p:column style="width: 20px">
+                <p:commandLink>
+                    <p:graphicImage id="viewGI"
+                                    value="resources/images/view.png"
+                                    width="20"
+                                    height="20">
+                    </p:graphicImage>
+                </p:commandLink>
+            </p:column>
+            <p:column headerText="Код клиента" style="width: 100px">
                 <h:outputText value="#{c.clientId}"/>
             </p:column>
-            <p:column filterBy="#{c.FIO}" filterStyle="width: inherit" sortBy="#{c.FIO}">
-                <f:facet name="header">
-                    <h:outputText value="ФИО клиента"/>
-                </f:facet>
+            <p:column headerText="ФИО клиента">
                 <h:outputText value="#{c.FIO}"/>
             </p:column>
-            <p:column filterBy="#{c.passData}" filterStyle="width: inherit" sortBy="#{c.passData}">
-                <f:facet name="header">
-                    <h:outputText value="Паспортные данные"/>
-                </f:facet>
+            <p:column headerText="Паспортные данные">
                 <h:outputText value="#{c.passData}"/>
             </p:column>
-            <p:column filterBy="#{c.homeAddress}" filterStyle="width: inherit" sortBy="#{c.homeAddress}">
-                <f:facet name="header">
-                    <h:outputText value="Адрес"/>
-                </f:facet>
+            <p:column headerText="Адрес">
                 <h:outputText value="#{c.homeAddress}"/>
             </p:column>
-            <p:column filterBy="#{c.phone}" filterStyle="width: inherit" sortBy="#{c.phone}">
-                <f:facet name="header">
-                    <h:outputText value="Телефон"/>
-                </f:facet>
+            <p:column headerText="Телефон">
                 <h:outputText value="#{c.phone}"/>
             </p:column>
-            <p:column filterBy="#{c.delivery}" filterStyle="width: inherit" sortBy="#{c.delivery}">
-                <f:facet name="header">
-                    <h:outputText value="Доставка"/>
-                </f:facet>
+            <p:column headerText="Доставка" style="width: 100px">
                 <h:outputText value="#{c.delivery}"/>
             </p:column>
-            <p:column filterBy="#{c.typeOfPayment}" filterStyle="width: inherit" sortBy="#{c.typeOfPayment}">
-                <f:facet name="header">
-                    <h:outputText value="Способ оплаты" />
-                </f:facet>
+            <p:column headerText="Способ оплаты">
                 <h:outputText value="#{c.typeOfPayment}"/>
             </p:column>
         </p:dataTable>
     </h:form>
+
+    <p:dialog header="Редактирование" widgetVar="clientEditDialogVar" minHeight="40" id="clientEditDialogId"
+              modal="true">
+        <h:form>
+            <h:panelGrid columns="2" cellspacing="5">
+                <p:outputLabel value="Ид клиента:"/>
+                <p:outputLabel value="#{clientsBean.currentClient.clientId}"/>
+
+                <p:outputLabel value="ФИО клиента:"/>
+                <p:inputText value="#{clientsBean.currentClient.FIO}"/>
+
+                <p:outputLabel value="Паспортные данные:"/>
+                <p:inputText value="#{clientsBean.currentClient.passData}"/>
+
+                <p:outputLabel value="Адрес:"/>
+                <p:inputText value="#{clientsBean.currentClient.homeAddress}"/>
+
+                <p:outputLabel value="Телефон:"/>
+                <p:inputText value="#{clientsBean.currentClient.phone}"/>
+
+                <p:outputLabel value="Доставка:"/>
+                <p:selectOneMenu id="som1" value="#{clientsBean.currentClient.delivery}">
+                    <f:selectItem itemLabel="Да" itemValue="#{1}"/>
+                    <f:selectItem itemLabel="Нет" itemValue="#{0}"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel value="Способ оплаты:"/>
+                <p:selectOneMenu id="som2" value="#{clientsBean.currentClient.typeOfPayment}">
+                    <f:selectItem itemLabel="Наличный" itemValue="Наличный"/>
+                    <f:selectItem itemLabel="Безналичный" itemValue="Безналичный"/>
+                </p:selectOneMenu>
+
+                <p:commandButton value="Сохранить" id="cb1" action="#{clientsBean.editClientConfirm}"
+                                 style="left: 280px" update="form1"/>
+            </h:panelGrid>
+        </h:form>
+    </p:dialog>
 </h:body>
 </html>

@@ -26,11 +26,14 @@
     </p:tabMenu>
 
     <p:separator/>
+
     <h:form id="form1">
-        <p:dataTable value="#{client.messages}" var="c">
-            <f:facet name="header">
-                Клиенты
-            </f:facet>
+        <p:dataTable id="clients" value="#{client.messages}" var="c" resizableColumns="true" paginator="true" rows="10"
+                     rowsPerPageTemplate="5,10,15" styleClass="ui-corner-top">
+                <f:facet name="header">
+                    Клиенты
+                    <p:commandButton value="Добавить клиента" style="float:left;"/>
+                </f:facet>
             <p:column style="width: 20px">
                 <h:commandLink
                         actionListener="#{clientsBean.editClient}">
@@ -45,7 +48,8 @@
             <p:column style="width: 20px">
                 <p:commandLink actionListener="#{clientsBean.deleteClientConfirm}" update="form1">
                     <f:param name="clientId" value="#{c.clientId}"/>
-                    <p:confirm header="Подтверждение!" message="Вы уверены что хотите удалить клиента?" icon="ui-icon-alert"/>
+                    <p:confirm header="Подтверждение!" message="Вы уверены что хотите удалить клиента?"
+                               icon="ui-icon-alert"/>
                     <p:graphicImage id="deleteGI"
                                     value="resources/images/delete.png"
                                     width="20"
@@ -56,15 +60,6 @@
                     <p:commandButton value="Да" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
                     <p:commandButton value="Нет" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
                 </p:confirmDialog>
-            </p:column>
-            <p:column style="width: 20px">
-                <p:commandLink>
-                    <p:graphicImage id="viewGI"
-                                    value="resources/images/view.png"
-                                    width="20"
-                                    height="20">
-                    </p:graphicImage>
-                </p:commandLink>
             </p:column>
             <p:column headerText="Код клиента" style="width: 100px">
                 <h:outputText value="#{c.clientId}"/>

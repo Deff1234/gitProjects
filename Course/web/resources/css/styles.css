@@ -6,3 +6,7 @@
 .ui-datatable .ui-column-filter {
     word-break-inside: 150px;
 }
+
+.ui-datatable-header .ui-widget-header .ui-corner-top {
+    height: 35px;
+}

@@ -7,6 +7,10 @@
     word-break-inside: 150px;
 }
 
-.ui-datatable-header .ui-widget-header .ui-corner-top {
+.myStyleHeader.ui-datatable .ui-datatable-header {
     height: 35px;
+}
+
+.ui-state-default .iconImageAdd {
+    background-image: url("add.png.xhtml?ln=images")
 }

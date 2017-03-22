@@ -6,23 +6,25 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-<h:head></h:head>
-<h:body>
-    <h:outputStylesheet library="css" name="styles.css"/>
-    <p:tabMenu activeIndex="#{param.i}">
+<f:view>
+    <h:head></h:head>
+    <h:body>
+        <h:outputStylesheet library="css" name="styles.css"/>
+        <p:tabMenu activeIndex="#{param.i}">
         <p:menuitem value="Главное меню" url="mainMenu.xhtml?i=0" >
-            <f:param name="i" value="0" />
+        <f:param name="i" value="0" />
         </p:menuitem>
         <p:menuitem value="Клиенты" url="clients.xhtml?i=1">
-            <f:param name="i" value="1" />
+        <f:param name="i" value="1" />
         </p:menuitem>
         <p:menuitem value="Автомобили" url="cars.xhtml?i=2">
-            <f:param name="i" value="2" />
+        <f:param name="i" value="2" />
         </p:menuitem>
         <p:menuitem value="Технические данные" url="technicalData.xhtml?i=3">
-            <f:param name="i" value="3" />
+        <f:param name="i" value="3" />
         </p:menuitem>
-    </p:tabMenu>
-    <h3>Автомобили</h3>
-</h:body>
+        </p:tabMenu>
+        <h3>Автомобили</h3>
+    </h:body>
+</f:view>
 </html>

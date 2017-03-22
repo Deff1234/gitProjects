@@ -25,7 +25,8 @@ public class Client {
         this.typeOfPayment = typeOfPayment;
     }
 
-    public Client(){}
+    public Client(){
+    }
 
     public List<Client> getMessages() throws SQLException, NamingException {
         return ClientsBean.getClients();

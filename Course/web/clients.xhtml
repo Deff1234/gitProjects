@@ -35,15 +35,14 @@
                                  actionListener="#{clientsBean.addClient}" update="clientAddDialogId"/>
             </f:facet>
             <p:column style="width: 20px">
-                <h:commandLink
-                        actionListener="#{clientsBean.editClient}">
+                <p:commandLink actionListener="#{clientsBean.editClient}" update="clientEditDialogId">
                     <f:param name="clientId" value="#{c.clientId}"/>
                     <p:graphicImage id="editGI"
                                     value="resources/images/edit.png"
                                     width="20"
                                     height="20">
                     </p:graphicImage>
-                </h:commandLink>
+                </p:commandLink>
             </p:column>
             <p:column style="width: 20px">
                 <p:commandLink actionListener="#{clientsBean.deleteClientConfirm}" update="form1">
@@ -96,22 +95,26 @@
                 <p:spacer/>
 
                 <p:outputLabel value="ФИО клиента:" for="it2"/>
-                <p:inputText value="#{clientsBean.currentClient.FIO}" id="it2" required="true" requiredMessage="ФИО не может быть пустым!"/>
+                <p:inputText value="#{clientsBean.currentClient.FIO}" id="it2" required="true"
+                             requiredMessage="ФИО не может быть пустым!"/>
                 <p:message for="it2" display="tooltip"/>
 
                 <p:outputLabel value="Паспортные данные:" for="it3"/>
-                <p:inputText value="#{clientsBean.currentClient.passData}" id="it3" required="true" requiredMessage="Паспортные данные не могу быть пустыми!"/>
+                <p:inputText value="#{clientsBean.currentClient.passData}" id="it3" required="true"
+                             requiredMessage="Паспортные данные не могу быть пустыми!"/>
                 <p:message for="it3" display="tooltip"/>
 
                 <p:outputLabel value="Адрес:" for="it4"/>
-                <p:inputText value="#{clientsBean.currentClient.homeAddress}" id="it4" required="true" requiredMessage="Адрес не может быть пустым!"/>
+                <p:inputText value="#{clientsBean.currentClient.homeAddress}" id="it4" required="true"
+                             requiredMessage="Адрес не может быть пустым!"/>
                 <p:message for="it4" display="tooltip"/>
 
                 <p:outputLabel value="Телефон:" for="it5"/>
-                <p:inputText value="#{clientsBean.currentClient.phone}" id="it5" required="true" requiredMessage="Телефон не может быть пустым!"/>
+                <p:inputText value="#{clientsBean.currentClient.phone}" id="it5" required="true"
+                             requiredMessage="Телефон не может быть пустым!"/>
                 <p:message for="it5" display="tooltip"/>
 
-                <p:outputLabel value="Доставка:" />
+                <p:outputLabel value="Доставка:"/>
                 <p:selectOneMenu id="som1" value="#{clientsBean.currentClient.delivery}">
                     <f:selectItem itemLabel="Да" itemValue="#{1}"/>
                     <f:selectItem itemLabel="Нет" itemValue="#{0}"/>
@@ -127,7 +130,8 @@
 
                 <p:spacer/>
                 <p:commandButton value="Ок" id="cb1" action="#{clientsBean.editClientConfirm}" ajax="true"
-                                 style="float: right" update="form1 :form2" validateClient="true" oncomplete="if (!args.validationFailed) PF('clientEditDialogVar').hide()"/>
+                                 style="float: right" update="form1 :form2" validateClient="true"
+                                 oncomplete="if (!args.validationFailed) PF('clientEditDialogVar').hide()"/>
             </h:panelGrid>
         </h:form>
     </p:dialog>
@@ -140,28 +144,33 @@
             <p:growl id="growl1" showDetail="true" sticky="true"/>
             <h:panelGrid columns="3" cellspacing="5" id="pg2">
                 <p:outputLabel value="Ид клиента:" for="it1"/>
-                <p:inputText value="#{clientsBean.currentClient.clientId}"  id="it1" required="true" requiredMessage="Ид клиента не может быть пустым!">
+                <p:inputText value="#{clientsBean.currentClient.clientId}" id="it1" required="true"
+                             requiredMessage="Ид клиента не может быть пустым!">
                     <f:validator validatorId="clients.clientIdValidator"/>
                 </p:inputText>
                 <p:message for="it1" display="tooltip"/>
 
                 <p:outputLabel value="ФИО клиента:" for="it6"/>
-                <p:inputText value="#{clientsBean.currentClient.FIO}" id="it6" required="true" requiredMessage="ФИО не может быть пустым!"/>
+                <p:inputText value="#{clientsBean.currentClient.FIO}" id="it6" required="true"
+                             requiredMessage="ФИО не может быть пустым!"/>
                 <p:message for="it6" display="tooltip"/>
 
                 <p:outputLabel value="Паспортные данные:" for="it7"/>
-                <p:inputText value="#{clientsBean.currentClient.passData}" id="it7" required="true" requiredMessage="Паспортные данные не могу быть пустыми!"/>
+                <p:inputText value="#{clientsBean.currentClient.passData}" id="it7" required="true"
+                             requiredMessage="Паспортные данные не могу быть пустыми!"/>
                 <p:message for="it7" display="tooltip"/>
 
                 <p:outputLabel value="Адрес:" for="it8"/>
-                <p:inputText value="#{clientsBean.currentClient.homeAddress}" id="it8" required="true" requiredMessage="Адрес не может быть пустым!"/>
+                <p:inputText value="#{clientsBean.currentClient.homeAddress}" id="it8" required="true"
+                             requiredMessage="Адрес не может быть пустым!"/>
                 <p:message for="it8" display="tooltip"/>
 
                 <p:outputLabel value="Телефон:" for="it9"/>
-                <p:inputText value="#{clientsBean.currentClient.phone}" id="it9" required="true" requiredMessage="Телефон не может быть пустым!"/>
+                <p:inputText value="#{clientsBean.currentClient.phone}" id="it9" required="true"
+                             requiredMessage="Телефон не может быть пустым!"/>
                 <p:message for="it9" display="tooltip"/>
 
-                <p:outputLabel value="Доставка:" />
+                <p:outputLabel value="Доставка:"/>
                 <p:selectOneMenu id="som3" value="#{clientsBean.currentClient.delivery}">
                     <f:selectItem itemLabel="Да" itemValue="#{1}"/>
                     <f:selectItem itemLabel="Нет" itemValue="#{0}"/>
@@ -177,7 +186,8 @@
 
                 <p:spacer/>
                 <p:commandButton value="Ок" id="cb2" action="#{clientsBean.addClientConfirm}" ajax="true"
-                                 style="float: right" update="form3 :form1" validateClient="true" oncomplete="if (!args.validationFailed) PF('clientAddDialogVar').hide()"/>
+                                 style="float: right" update="form3 :form1" validateClient="true"
+                                 oncomplete="if (!args.validationFailed) PF('clientAddDialogVar').hide()"/>
             </h:panelGrid>
         </h:form>
     </p:dialog>

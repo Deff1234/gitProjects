@@ -1,3 +1,5 @@
+package client;
+
 import org.primefaces.context.RequestContext;
 
 import javax.annotation.PostConstruct;
@@ -19,7 +21,7 @@ public class ClientsBean implements Serializable {
 
     private int currentClientId;
     private Client currentClient;
-    private boolean editClient;
+    private boolean editClientTrue;
     private String messageHeader;
 
     private static final String SQL_UPDATE_CLIENT = "UPDATE clients SET FIO = ?, passportData = ?, homeAddress = ?, phone = ?, delivery = ?, typeOfPayment = ? WHERE clientId = ?";
@@ -72,13 +74,6 @@ public class ClientsBean implements Serializable {
         }
     }
 
-    public void actionConfirm() throws SQLException, NamingException {
-        if (editClient)
-            editClientConfirm();
-        else
-            addClientConfirm();
-    }
-
 
     public void clientConfirm(String query) throws NamingException, SQLException {
         InitialContext ctx = new javax.naming.InitialContext();
@@ -106,7 +101,7 @@ public class ClientsBean implements Serializable {
     }
 
     public void editClient() throws SQLException, NamingException {
-        editClient = true;
+        editClientTrue = true;
         messageHeader = "Редактирование";
         FacesContext fc = FacesContext.getCurrentInstance();
         Map<String, String> params =
@@ -130,7 +125,7 @@ public class ClientsBean implements Serializable {
     }
 
     public void addClient() {
-        editClient = false;
+        editClientTrue = false;
         setMessageHeader("Добавление");
         currentClient = new Client();
         RequestContext context = RequestContext.getCurrentInstance();
@@ -150,7 +145,7 @@ public class ClientsBean implements Serializable {
         currentClientId = Integer.valueOf(params.get("clientId"));
     }
 
-    public void deleteClientConfirm() throws SQLException, NamingException{
+    public void deleteClientConfirm() throws SQLException, NamingException {
         deleteClient();
         InitialContext ctx = new javax.naming.InitialContext();
         DataSource ds = (javax.sql.DataSource) ctx.lookup("jdbc/DefaultDC");
@@ -186,12 +181,12 @@ public class ClientsBean implements Serializable {
         this.currentClient = currentClient;
     }
 
-    public boolean isEditClient() {
-        return editClient;
+    public boolean isEditClientTrue() {
+        return editClientTrue;
     }
 
-    public void setEditClient(boolean editClient) {
-        this.editClient = editClient;
+    public void setEditClientTrue(boolean editClientTrue) {
+        this.editClientTrue = editClientTrue;
     }
 
     public String getMessageHeader() {

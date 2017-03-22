@@ -1,3 +1,5 @@
+package client;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.naming.NamingException;

@@ -1,3 +1,5 @@
+package client;
+
 import org.primefaces.validate.ClientValidator;
 
 import javax.faces.application.FacesMessage;
